@@ -5,7 +5,7 @@ import MyHipHop from "./MyHipHop";
 
 export default function Home() {
   return (
-    <div className="mainPage">
+    <div className="mainPage" style={{ marginBottom: '10%'}}>
       <div className="row justify-content-center mt-4">
         <div className="col-10 mainLinks d-flex justify-content-between">
           <a href="#a" style={{ textDecoration: 'none' }}>TRENDING</a>
@@ -30,7 +30,9 @@ export default function Home() {
         <div className="col-10">
           <div id="rock">
             <h2>Rock Classics</h2>
-            <MyRock />
+            <div>
+                <MyRock />
+            </div>
           </div>
         </div>
       </div>
@@ -38,7 +40,9 @@ export default function Home() {
         <div className="col-10">
           <div id="pop">
             <h2>Pop Culture</h2>
-            <MyPopC />
+            <div>
+                <MyPopC />
+            </div>
           </div>
         </div>
       </div>
@@ -46,7 +50,9 @@ export default function Home() {
         <div className="col-10">
           <div id="hiphop">
             <h2>#HipHop</h2>
-            <MyHipHop />
+            <div>
+                <MyHipHop />
+            </div>
           </div>
         </div>
       </div>

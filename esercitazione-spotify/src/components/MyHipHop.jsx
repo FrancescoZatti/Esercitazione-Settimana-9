@@ -22,9 +22,9 @@ export default function MyHipHop() {
 
   return (
     <>
-      <div className='d-flex flex-nowrap justify-content-between'>
+      <div className='d-flex flex-nowrap justify-content-start'>
         {data.map((item, index) => (
-          <div key={index} className="border-none text-center me-2" style={{background: 'none'}}>
+          <div key={index} className="border-none text-center me-5" style={{background: 'none'}}>
             <div className="toAlbumPage fw-lighter mb-1 mt-2">
                 <img
                 src={item.album.cover}
