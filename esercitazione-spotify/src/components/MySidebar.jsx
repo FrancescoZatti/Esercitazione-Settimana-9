@@ -17,15 +17,18 @@ export default function Sidebar() {
                         <span className="navbar-toggler-icon" />
                     </button>
                     <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-                        <Navbar className="navbar-nav" >
-                            <ul className='ps-0'>
-                                <li className='ps-4'>
-                                    <a className="nav-item nav-link" href="index.html">
-                                    <FontAwesomeIcon icon={faHome} />   Home </a>
+                        <Navbar className="navbar-nav">
+                            <ul className="ps-0">
+                                <li className="ps-4">
+                                <Link className="nav-item nav-link" to="/">
+                                    <FontAwesomeIcon icon={faHome} /> Home{" "}
+                                </Link>
                                 </li>
-                                <li className='ps-4'>
-                                    <a className="nav-item nav-link" href="#">
-                                    <FontAwesomeIcon icon={faBookOpen} className="fa-lg" /> Your Library </a>
+                                <li className="ps-4">
+                                <Link className="nav-item nav-link" to="/your-library">
+                                    <FontAwesomeIcon icon={faBookOpen} className="fa-lg" /> Your
+                                    Library{" "}
+                                </Link>
                                 </li>
                                 <InputGroup className="input-group mt-3 px-3">
                                     <input type="text" className="form-control mb-2" id="searchField" placeholder="Search" aria-label="Search" aria-describedby="basic-addon2" />

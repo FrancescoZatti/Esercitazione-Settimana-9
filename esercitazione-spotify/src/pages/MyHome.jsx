@@ -1,7 +1,7 @@
 import React from "react";
-import MyRock from "./MyRock";
-import MyPopC from "./MyPopC";
-import MyHipHop from "./MyHipHop";
+import MyRock from "../components/MyRock";
+import MyPopC from "../components/MyPopC";
+import MyHipHop from "../components/MyHipHop";
 
 export default function Home() {
   return (
@@ -15,17 +15,6 @@ export default function Home() {
           <a href="#e" style={{ textDecoration: 'none' }}>DISCOVER</a>
         </div>
       </div>
-
-      {/* RISULTATI DELLA RICERCA */}
-      {/* <div className="row d-none">
-          <div className="col-10">
-              <div id="searchResults" style={{ display: 'none' }}> 
-                  <h2>Search Results</h2>
-                  <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3"></div>
-              </div>
-          </div>
-      </div> */}
-
       <div className="row">
         <div className="col-10">
           <div id="rock">
@@ -49,7 +38,7 @@ export default function Home() {
       <div className="row">
         <div className="col-10">
           <div id="hiphop">
-            <h2>#HipHop</h2>
+            <h2>HipHop</h2>
             <div>
                 <MyHipHop />
             </div>

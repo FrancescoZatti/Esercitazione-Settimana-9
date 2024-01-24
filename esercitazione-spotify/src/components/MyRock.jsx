@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 export default function MyRock() {
   const [data, setData] = useState([]);
@@ -12,8 +13,8 @@ export default function MyRock() {
     axios
       .request(option)
       .then((response) => {
-        console.log(response.data.data.slice(0, 4));
-        setData(response.data.data.slice(0, 4));
+        console.log(response.data.data.slice(0, 6));
+        setData(response.data.data.slice(0, 6));
       })
       .catch((error) => {
         console.log(error);
@@ -22,24 +23,23 @@ export default function MyRock() {
 
   return (
     <>
-      <div className='d-flex flex-nowrap justify-content-start'>
+      <div className='d-flex flex-nowrap justify-content-between' style={{width: '200px'}}>
         {data.map((item, index) => (
           <div key={index} className="border-none text-center me-5" style={{background: 'none'}}>
-            <div className="toAlbumPage fw-lighter mb-1 mt-2">
+            <Link to={`/album/${item.album.id}`} className="toAlbumPage fw-lighter mb-1 mt-2">
                 <img
-                src={item.album.cover}
+                src={item.album.cover_big}
                 className="card-img-top"
                 alt="Album Cover"
                 />
-                <p className='mb-0 mt-2'>Album: 
-                    <span> {item.title}</span>
-                </p>
-            </div>
-            <div className="toArtistPage fw-lighter mt-0">
-              <p>Artist: 
-                  <span> {item.artist.name}</span>
-              </p>
-            </div>
+                <span> {item.album.title}</span>
+            </Link>
+            <Link
+              to={`/artist/${item.artist.id}`}
+              className="text-decoration-none"
+            >
+              <p className="toArtistPage artist-name fw-normal">{item.artist.name}</p>
+            </Link>
           </div>
         ))}
       </div>
