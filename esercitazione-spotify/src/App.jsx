@@ -7,6 +7,8 @@ import Home from './pages/MyHome.jsx';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Album from './pages/MyAlbum.jsx';
 import Artist from './pages/MyArtist.jsx';
+import MySearch from './pages/MySearch.jsx';
+
 
 function App() {
 
@@ -20,6 +22,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/album/:id" element={<Album />} />
               <Route path="/artist/:id" element={<Artist />} />
+              <Route path="/search" element={<MySearch />} />
             </Routes>
             <Player />
           </div>

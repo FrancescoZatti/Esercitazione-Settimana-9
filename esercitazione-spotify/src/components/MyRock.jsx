@@ -10,40 +10,51 @@ export default function MyRock() {
   };
 
   useEffect(() => {
-    axios
-      .request(option)
-      .then((response) => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.request(option);
         console.log(response.data.data.slice(0, 6));
-        setData(response.data.data.slice(0, 6));
-      })
-      .catch((error) => {
+
+        // Rimuovi album con stesso nome nella prima parola e artista
+        const uniqueAlbums = [];
+        response.data.data.forEach((item) => {
+          const albumKey = `${item.album.title.split(' ')[0].toLowerCase()}-${item.artist.name.toLowerCase()}`;
+          const existingAlbum = uniqueAlbums.find((album) => albumKey === album.key);
+          if (!existingAlbum) {
+            uniqueAlbums.push({ ...item, key: albumKey });
+          }
+        });
+
+        setData(uniqueAlbums.slice(0, 5));
+      } catch (error) {
         console.log(error);
-      });
+      }
+    };
+
+    fetchData();
   }, []);
 
   return (
     <>
-      <div className='d-flex flex-nowrap justify-content-between' style={{width: '200px'}}>
+      <div className="row row-cols-1 row-cols-md-2 row-cols-lg-5 pe-5 ps-0 ms-0">
         {data.map((item, index) => (
-          <div key={index} className="border-none text-center me-5" style={{background: 'none'}}>
-            <Link to={`/album/${item.album.id}`} className="toAlbumPage fw-lighter mb-1 mt-2">
+          <div key={index} className="col mb-4 ps-0 ms-0">
+            <div className="border-none text-center ps-0 ms-0" style={{ background: 'none' }}>
+              <Link to={`/album/${item.album.id}`} className="text-decoration-none toAlbumPage fw-lighter mb-1 mt-2 d-block">
                 <img
-                src={item.album.cover_big}
-                className="card-img-top"
-                alt="Album Cover"
+                  src={item.album.cover_big}
+                  className="card-img-top mx-auto"
+                  alt="Album Cover"
                 />
-                <span> {item.album.title}</span>
-            </Link>
-            <Link
-              to={`/artist/${item.artist.id}`}
-              className="text-decoration-none"
-            >
-              <p className="toArtistPage artist-name fw-normal">{item.artist.name}</p>
-            </Link>
+                <span className="d-block">{item.album.title}</span>
+              </Link>
+              <Link to={`/artist/${item.artist.id}`} className="text-decoration-none toAlbumPage fw-lighter mb-1 mt-2">
+                <p className="toArtistPage artist-name fw-normal">{item.artist.name}</p>
+              </Link>
+            </div>
           </div>
         ))}
       </div>
     </>
   );
 }
-

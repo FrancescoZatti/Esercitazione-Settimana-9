@@ -15,30 +15,30 @@ export default function Home() {
           <a href="#e" style={{ textDecoration: 'none' }}>DISCOVER</a>
         </div>
       </div>
-      <div className="row">
-        <div className="col-10">
-          <div id="rock">
-            <h2>Rock Classics</h2>
+      <div className="mt-5 ps-0 ms-0">
+        <div className="ps-0 ms-0">
+          <div id="rock classics ps-0 ms-0">
+            <h2 className="text-white mb-4">Rock Classics</h2>
             <div>
                 <MyRock />
             </div>
           </div>
         </div>
       </div>
-      <div className="row">
-        <div className="col-10">
-          <div id="pop">
-            <h2>Pop Culture</h2>
+      <div className="mt-5 ps-0 ms-0">
+        <div className="ps-0 ms-0">
+          <div id="pop ps-0 ms-0">
+            <h2 className="text-white mb-4">Pop Culture</h2>
             <div>
                 <MyPopC />
             </div>
           </div>
         </div>
       </div>
-      <div className="row">
-        <div className="col-10">
-          <div id="hiphop">
-            <h2>HipHop</h2>
+      <div className="mt-5 ps-0 ms-0">
+        <div className="ps-0 ms-0">
+          <div id="hiphop ps-0 ms-0">
+            <h2 className="text-white mb-4">HipHop</h2>
             <div>
                 <MyHipHop />
             </div>
