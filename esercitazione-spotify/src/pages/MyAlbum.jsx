@@ -2,10 +2,22 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { setCurrentSong } from "../actions/actions";
 
-export default function Album() {
+function Album(props) {
+  const [currentTrack, setCurrentTrack] = useState(null);
   const { id } = useParams();
   const [album, setAlbum] = useState(null);
+
+  const handleClick = (track) => {
+    setCurrentTrack(track);
+    props.setCurrentSong({
+      title: track.title,
+      albumCover: album.cover_big,
+    });
+    console.log(track);
+  };
 
   useEffect(() => {
     axios
@@ -17,14 +29,24 @@ export default function Album() {
   }, [id]);
 
   return album ? (
-    <div className="mainPage" style={{ marginBottom: '10%'}}>
+    <div className="mainPage" style={{ marginBottom: "10%" }}>
       <div className="row justify-content-center mt-4">
         <div className="col-10 mainLinks d-flex justify-content-between">
-          <a href="#a" style={{ textDecoration: 'none' }}>TRENDING</a>
-          <a href="#b" style={{ textDecoration: 'none' }}>PODCAST</a>
-          <a href="#c" style={{ textDecoration: 'none' }}>MOODS AND GENRES</a>
-          <a href="#d" style={{ textDecoration: 'none' }}>NEW RELEASES</a>
-          <a href="#e" style={{ textDecoration: 'none' }}>DISCOVER</a>
+          <a href="#a" style={{ textDecoration: "none" }}>
+            TRENDING
+          </a>
+          <a href="#b" style={{ textDecoration: "none" }}>
+            PODCAST
+          </a>
+          <a href="#c" style={{ textDecoration: "none" }}>
+            MOODS AND GENRES
+          </a>
+          <a href="#d" style={{ textDecoration: "none" }}>
+            NEW RELEASES
+          </a>
+          <a href="#e" style={{ textDecoration: "none" }}>
+            DISCOVER
+          </a>
         </div>
       </div>
       <div className="row">
@@ -37,12 +59,14 @@ export default function Album() {
           <div className="mt-4 text-center">
             <p className="album-title">{album.title}</p>
           </div>
-          <Link
+          <div className="text-center">
+            <Link
               to={`/artist/${album.artist.id}`}
               className="text-decoration-none"
             >
               <p className="artist-name toArtistPage">{album.artist.name}</p>
             </Link>
+          </div>
           <div className="mt-4 text-center">
             <button id="btnPlay" className="btn btn-success" type="button">
               Play
@@ -53,7 +77,11 @@ export default function Album() {
           <div className="row">
             <div className="col-md-10 mb-5" id="trackList">
               {album.tracks.data.map((track, index) => (
-                <div key={index} className="p-3 trackHover rounded-5">
+                <div
+                  key={index}
+                  className="py-3 trackHover"
+                  onClick={() => handleClick(track)}
+                >
                   <a
                     href="#"
                     className="card-title trackHover px-3"
@@ -77,3 +105,9 @@ export default function Album() {
     <div>Loading...</div>
   );
 }
+
+const mapDispatchToProps = {
+  setCurrentSong,
+};
+
+export default connect(null, mapDispatchToProps)(Album);
