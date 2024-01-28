@@ -3,7 +3,8 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { setCurrentSong } from "../actions/actions";
+import { setCurrentSong, addToFavorites, removeFromFavorites } from "../actions/actions";
+import { IoMdHeart } from "react-icons/io";
 
 function Album(props) {
   const [currentTrack, setCurrentTrack] = useState(null);
@@ -17,6 +18,18 @@ function Album(props) {
       albumCover: album.cover_big,
     });
     console.log(track);
+  };
+
+  const handleLikeClick = (track) => {
+    if (props.favoriteSongs && Array.isArray(props.favoriteSongs)) {
+      const isLiked = props.favoriteSongs.some((favTrack) => favTrack.id === track.id);
+
+      if (isLiked) {
+        props.removeFromFavorites(track.id);
+      } else {
+        props.addToFavorites(track);
+      }
+    }
   };
 
   useEffect(() => {
@@ -79,7 +92,7 @@ function Album(props) {
               {album.tracks.data.map((track, index) => (
                 <div
                   key={index}
-                  className="py-3 trackHover"
+                  className="py-3 trackHover px-4 rounded-5"
                   onClick={() => handleClick(track)}
                 >
                   <a
@@ -89,10 +102,21 @@ function Album(props) {
                   >
                     {track.title}
                   </a>
-                  <small className="duration" style={{ color: "white" }}>
+                  <small className="duration d-flex justify-content-end align-items-center" style={{ color: "white" }}>
                     {Math.floor(track.duration / 60)}:
                     {track.duration % 60 < 10 ? "0" : ""}
                     {track.duration % 60}
+                    <IoMdHeart
+                      className={`fs-5 text-white ms-4 ${
+                        props.favoriteSongs.some((favTrack) => favTrack.id === track.id)
+                          ? "text-danger"
+                          : "opacity-25"
+                      }`}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleLikeClick(track);
+                      }}
+                    />
                   </small>
                 </div>
               ))}
@@ -106,8 +130,14 @@ function Album(props) {
   );
 }
 
+const mapStateToProps = (state) => ({
+  favoriteSongs: state.favoriteSongs,
+});
+
 const mapDispatchToProps = {
   setCurrentSong,
+  addToFavorites,
+  removeFromFavorites,
 };
 
-export default connect(null, mapDispatchToProps)(Album);
+export default connect(mapStateToProps, mapDispatchToProps)(Album);

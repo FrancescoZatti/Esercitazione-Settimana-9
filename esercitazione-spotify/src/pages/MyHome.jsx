@@ -5,7 +5,7 @@ import MyHipHop from "../components/MyHipHop";
 
 export default function Home() {
   return (
-    <div className="mainPage" style={{ marginBottom: '10%'}}>
+    <div className="mainPage ms-4" style={{ marginBottom: '10%'}}>
       <div className="row justify-content-center mt-4">
         <div className="col-10 mainLinks d-flex justify-content-between">
           <a href="#a" style={{ textDecoration: 'none' }}>TRENDING</a>

@@ -43,7 +43,7 @@ export default function MySidebar() {
                   </Link>
                 </li>
                 <li className="ps-4">
-                  <Link className="nav-item nav-link" to="/your-library">
+                  <Link as={Link} className="nav-item nav-link" to="/favorites">
                     <FontAwesomeIcon icon={faBookOpen} className="fa-lg" /> Your Library{" "}
                   </Link>
                 </li>

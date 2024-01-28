@@ -8,6 +8,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Album from './pages/MyAlbum.jsx';
 import Artist from './pages/MyArtist.jsx';
 import MySearch from './pages/MySearch.jsx';
+import Favorites from './pages/MyFavourite.jsx';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
               <Route path="/album/:id" element={<Album />} />
               <Route path="/artist/:id" element={<Artist />} />
               <Route path="/search" element={<MySearch />} />
+              <Route path="/favorites" element={<Favorites />} />
             </Routes>
             <Player />
           </div>
