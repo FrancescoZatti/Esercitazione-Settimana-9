@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { removeFromFavorites } from "../actions/actions";
-import { setCurrentSong } from "../actions/actions";  // Aggiunto
+import { setCurrentSong } from "../actions/actions"; 
 import { IoMdHeart } from "react-icons/io";
 
 function Favorites() {
